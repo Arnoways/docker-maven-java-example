@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+
+  maven:
+    build:
+      context: .
+      dockerfile: docker-maven/Dockerfile
+    volumes:
+      - mvn_cache:/root/.m2
+      - jar_dir:/dist
+    environment:
+      - "ARTIFACT_ID=HelloWorld"
+
+  java:
+    build:
+      context: .
+      dockerfile: docker-java/Dockerfile
+    volumes:
+      - jar_dir:/dist
+    environment:
+      - "ARTIFACT_ID=HelloWorld"
+
+volumes:
+  mvn_cache:
+  jar_dir:
