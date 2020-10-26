@@ -4,10 +4,15 @@ A docker-compose enabling cache on maven container so we don't wait for download
 ## How to use 
 Modify the ARTIFACT_ID in the docker-compose.yml with what's in your pom.xml.  
 ```
-docker-compose build        # build both images.
-docker-compose up maven     # re-compiles the .jar file.
-docker-compose up java      # executes your code.
-docker-compose restart java # restarts your code if container was already up before recompilation.
+❯ ./wrapper.sh
+usage: ./wrapper.sh [option]
+available options:
+build           re-compiles the code, should be followed by a restart.
+restart         restarts the java container - is needed to take modifications into account.
+up              triggers build then a restart.
+logs            gets java's logs.
+clear           WARNING: hard reset on everything. Kills containers, volumes (including database data), images and kittens.
+help            displays this message.
 ```
 
 ## Why did I do this
